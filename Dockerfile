@@ -26,10 +26,11 @@ RUN cd /usr/src && \
     wget https://packages.groonga.org/source/mroonga/mroonga-${MROONGA_VERSION}.tar.gz && \
     tar xzf mroonga-${MROONGA_VERSION}.tar.gz && \
     cd mroonga-${MROONGA_VERSION} && \
-    ./configure --with-mysql-source=/usr/src/mysql-community-${MYSQL_SOURCE_VERSION} \
+    ./configure --prefix=/usr \
+                --with-mysql-source=/usr/src/mysql-community-${MYSQL_SOURCE_VERSION} \
                 --with-mysql-build=/usr/src/mysql-community-${MYSQL_SOURCE_VERSION}/build \
                 --with-mysql-config=/usr/src/mysql-community-${MYSQL_SOURCE_VERSION}/build/scripts/mysql_config && \
     make install && \
-    ln -s /usr/local/share/mroonga/install.sql /docker-entrypoint-initdb.d/mroonga-install.sql && \
+    ln -s /usr/share/mroonga/install.sql /docker-entrypoint-initdb.d/mroonga-install.sql && \
 
     rm -rf /usr/src/* /var/lib/apt/lists/*
