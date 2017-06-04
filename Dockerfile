@@ -19,7 +19,7 @@ RUN cd /usr/src && \
     apt-get source mysql-community-source && \
     cd mysql-community-${MYSQL_SOURCE_VERSION} && \
     mkdir build && cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_PLUGINDIR=/usr/lib/mysql/plugin \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_PLUGINDIR=lib/mysql/plugin \
           -DDOWNLOAD_BOOST=1 -DDOWNLOAD_BOOST_TIMEOUT=1800 -DWITH_BOOST=/usr/src/boost .. && \
     make && \
 
