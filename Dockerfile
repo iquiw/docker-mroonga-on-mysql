@@ -1,21 +1,23 @@
 FROM mysql:5.7
 
-RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
-    apt-get install -y --no-install-recommends bison cmake libncurses5-dev zlib1g-dev wget
-
-COPY groonga.list /etc/apt/sources.list.d/
-RUN echo "deb-src http://repo.mysql.com/apt/debian/ jessie mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list
-
-RUN apt-get update && \
-    apt-get install -y --allow-unauthenticated groonga-keyring && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends libgroonga-dev \
-            groonga-normalizer-mysql groonga-tokenizer-mecab
-
 ENV MROONGA_VERSION=7.02
 ENV MYSQL_SOURCE_VERSION=5.7.18
 
-RUN cd /usr/src && \
+COPY groonga.list /tmp/
+
+RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
+    apt-get install -y --no-install-recommends bison cmake libncurses5-dev zlib1g-dev wget && \
+
+    cp /tmp/groonga.list /etc/apt/sources.list.d/ && \
+    echo "deb-src http://repo.mysql.com/apt/debian/ jessie mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list && \
+
+    apt-get update && \
+    apt-get install -y --allow-unauthenticated groonga-keyring && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends libgroonga-dev \
+            groonga-normalizer-mysql groonga-tokenizer-mecab && \
+
+    cd /usr/src && \
     apt-get source mysql-community-source && \
     cd mysql-community-${MYSQL_SOURCE_VERSION} && \
     mkdir build && cd build && \
@@ -34,4 +36,5 @@ RUN cd /usr/src && \
     make install && \
     ln -s /usr/share/mroonga/install.sql /docker-entrypoint-initdb.d/mroonga-install.sql && \
 
+    apt-get purge -y --auto-remove apt-transport-https dpkg-dev bison cmake libncurses5-dev zlib1g-dev wget && \
     rm -rf /usr/src/* /var/lib/apt/lists/*
