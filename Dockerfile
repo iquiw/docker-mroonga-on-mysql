@@ -36,5 +36,5 @@ RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
     make install && \
     ln -s /usr/share/mroonga/install.sql /docker-entrypoint-initdb.d/mroonga-install.sql && \
 
-    apt-get purge -y --auto-remove apt-transport-https dpkg-dev bison cmake libncurses5-dev zlib1g-dev wget && \
+    apt-get purge -y --auto-remove dpkg-dev bison cmake libncurses5-dev zlib1g-dev wget && \
     rm -rf /usr/src/* /var/lib/apt/lists/*
