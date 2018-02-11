@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_PLUGINDIR=lib/mysql/plugin \
           -DDOWNLOAD_BOOST=1 -DDOWNLOAD_BOOST_TIMEOUT=1800 -DWITH_BOOST=/usr/src/boost .. && \
     make && \
+    cd libservices && make install && \
 
     cd /usr/src && \
     wget https://packages.groonga.org/source/mroonga/mroonga-${MROONGA_VERSION}.tar.gz && \
