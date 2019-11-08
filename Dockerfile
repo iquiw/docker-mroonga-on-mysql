@@ -6,7 +6,7 @@ ENV MYSQL_SOURCE_VERSION=5.7.28
 COPY groonga.list /tmp/
 
 RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
-    apt-get install -y --no-install-recommends bison cmake libncurses5-dev zlib1g-dev wget && \
+    apt-get install -y --no-install-recommends bison cmake libncurses5-dev libssl-dev zlib1g-dev wget && \
     \
     cp /tmp/groonga.list /etc/apt/sources.list.d/ && \
     echo "deb-src http://repo.mysql.com/apt/debian/ stretch mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list && \
@@ -37,5 +37,5 @@ RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
     make install && \
     ln -s /usr/share/mroonga/install.sql /docker-entrypoint-initdb.d/mroonga-install.sql && \
     \
-    apt-get purge -y --auto-remove dpkg-dev bison cmake libncurses5-dev zlib1g-dev wget && \
+    apt-get purge -y --auto-remove dpkg-dev bison cmake libncurses5-dev libssl-dev zlib1g-dev wget && \
     rm -rf /usr/src/* /var/lib/apt/lists/*
