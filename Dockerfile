@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
     apt-get install -y --no-install-recommends bison cmake libncurses5-dev zlib1g-dev wget && \
     \
     cp /tmp/groonga.list /etc/apt/sources.list.d/ && \
-    echo "deb-src http://repo.mysql.com/apt/debian/ jessie mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list && \
+    echo "deb-src http://repo.mysql.com/apt/debian/ stretch mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list && \
     \
     apt-get update && \
     apt-get install -y --allow-unauthenticated groonga-keyring && \
