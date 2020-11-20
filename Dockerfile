@@ -1,18 +1,16 @@
 FROM mysql:5.7
 
 ENV MROONGA_VERSION=10.07
-ENV MYSQL_SOURCE_VERSION=5.7.31
+ENV MYSQL_SOURCE_VERSION=5.7.32
 
-COPY groonga.list /tmp/
-
-RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev && \
-    apt-get install -y --no-install-recommends bison cmake libncurses5-dev libssl-dev zlib1g-dev wget && \
+RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev wget && \
+    apt-get install -y --no-install-recommends bison cmake libncurses5-dev libssl-dev zlib1g-dev && \
     \
-    cp /tmp/groonga.list /etc/apt/sources.list.d/ && \
-    echo "deb-src http://repo.mysql.com/apt/debian/ stretch mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list && \
+    echo "deb-src http://repo.mysql.com/apt/debian/ buster mysql-${MYSQL_MAJOR}" >> /etc/apt/sources.list.d/mysql.list && \
     \
-    apt-get update && \
-    apt-get install -y --allow-unauthenticated groonga-keyring && \
+    wget https://packages.groonga.org/debian/groonga-apt-source-latest-buster.deb && \
+    apt install -y --no-install-recommends ./groonga-apt-source-latest-buster.deb && \
+    rm -f groonga-apt-source-latest-buster.deb && \
     apt-get update && \
     apt-get install -y --no-install-recommends libgroonga-dev \
             groonga-normalizer-mysql groonga-tokenizer-mecab && \
