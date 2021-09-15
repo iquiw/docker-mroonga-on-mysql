@@ -1,6 +1,8 @@
 # Docker image for Mroonga based on Official MySQL image
 
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/iquiw/mroonga-on-mysql)](https://hub.docker.com/r/iquiw/mroonga-on-mysql/)
+[![GitHub Workflow Status](https://github.com/iquiw/docker-mroonga-on-mysql/actions/workflows/docker.yml/badge.svg)](https://github.com/iquiw/docker-mroonga-on-mysql/actions/workflows/docker.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/iquiw/mroonga-on-mysql)](https://hub.docker.com/r/iquiw/mroonga-on-mysql)
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/iquiw/mroonga-on-mysql)](https://hub.docker.com/r/iquiw/mroonga-on-mysql)
 
 This image provides MySQL with Mroonga extension based on
 official [MySQL image](https://hub.docker.com/_/mysql/).
