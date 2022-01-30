@@ -8,7 +8,7 @@ This image provides MySQL with Mroonga extension based on
 official [MySQL image](https://hub.docker.com/_/mysql/).
 
 * MySQL v5.7.37
-* Mroonga v11.11
+* Mroonga v11.12
 
 It can run in the same way as the official image and the same environment
 variables can be used.
