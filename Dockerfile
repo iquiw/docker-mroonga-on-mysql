@@ -1,6 +1,6 @@
 FROM mysql:5.7
 
-ENV MROONGA_VERSION=12.00
+ENV MROONGA_VERSION=12.02
 ENV MYSQL_SOURCE_VERSION=5.7.37
 
 RUN apt-get update && apt-get install -y apt-transport-https dpkg-dev wget && \
